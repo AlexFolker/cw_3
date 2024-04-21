@@ -1,5 +1,6 @@
-from datetime import datetime
 import json
+from datetime import datetime
+
 
 def get_mask_number(numbers_info):
     """
@@ -13,11 +14,12 @@ def get_mask_number(numbers_info):
         numbers = parts[-1]
         if len(numbers) == 16:
             masked_numbers = f"{numbers[:4]} {numbers[4:6]}** **** {numbers[-4:]}"
-            return  " ".join(parts[:-1]) + " " + masked_numbers
+            return " ".join(parts[:-1]) + " " + masked_numbers
         else:
             return f'Счёт **{numbers[-4:]}'
     else:
         return "Пополнение счёта"
+
 
 def open_json_file(path):
     """
@@ -51,7 +53,7 @@ def get_sorted_list(list_with_dict):
      :param list_with_dict: Список, содержащий словари, представляющие операции.
      :return: Отсортированный список операций на основе дат в порядке убывания.
     """
-    return sorted(list_with_dict, key = lambda x: x['date'], reverse=True)
+    return sorted(list_with_dict, key=lambda x: x['date'], reverse=True)
 
 
 def print_from_dict(about_operation):
@@ -71,5 +73,3 @@ def print_from_dict(about_operation):
     print(f" {date} {description}")
     print(f" {get_mask_number(from_info)} -> {get_mask_number(to_info)}")
     print(f" {amount} {currency}\n")
-
-
